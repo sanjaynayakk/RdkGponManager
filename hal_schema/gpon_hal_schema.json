@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://gerrit.teamccp.com/rdk/rdkb/components/opensource/ccsp/halinterface/generic/gpon_json/gpon_hal_schema.json",
+  "$id": "/gpon_json/gpon_hal_schema.json",
   "title": "GPON HAL Schema",
   "description": "GPON HAL JSON Schema definitions. DO NOT modify the contents of this schema file. RDK community team make necessary changes and release",
 
