@@ -100,7 +100,14 @@ ANSC_STATUS GponHal_Init()
 #if defined(WAN_MANAGER_UNIFICATION_ENABLED)
     char wan_type[32] = {0};
 
-    v_secure_system("/bin/json_hal_server_gpon /etc/rdk/conf/gpon_manager_conf.json &");
+    if (access("/bin/json_hal_server_gpon", F_OK) == 0)
+    {
+        v_secure_system("/bin/json_hal_server_gpon  /etc/rdk/conf/gpon_manager_wan_unify_conf.json &");
+    }
+    else
+    {
+        v_secure_system("/usr/bin/json_hal_server_gpon  /etc/rdk/conf/gpon_manager_wan_unify_conf.json &");
+    }
 #endif
 
     if (json_hal_client_init(GPON_MANAGER_CONF_FILE) != RETURN_OK)
