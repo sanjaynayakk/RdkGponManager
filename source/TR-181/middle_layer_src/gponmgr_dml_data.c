@@ -182,11 +182,7 @@ void GponMgrDml_SetDefaultPhyMedia(DML_PHY_MEDIA_CTRL_T* gponPhyMediaData)
         gponPhyMedia->TxPower.SignalLevelLowerThreshold = 0;
         gponPhyMedia->TxPower.SignalLevelUpperThreshold = 0;
         
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-        gponPhyMedia->Voltage.CurrentVoltage = 0;
-#else 
         gponPhyMedia->Voltage.VoltageLevel = 0;
-#endif
         
         gponPhyMedia->Bias.CurrentBias = 0;
         
@@ -216,13 +212,8 @@ void GponMgrDml_SetDefaultGtc(DML_GTC* gponGtcData)
         gponGtcData->CorrectedFecBytes = 0;
         gponGtcData->CorrectedFecCodeWords = 0;
         gponGtcData->UnCorrectedFecCodeWords = 0;
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-        gponGtcData->GtcTotalFecCodeWords = 0;
-        gponGtcData->GtcHecErrorCount = 0;
-#else
         gponGtcData->TotalFecCodeWords = 0;
         gponGtcData->HecErrorCount = 0;
-#endif
         gponGtcData->PSBdHecErrors = 0;
         gponGtcData->FrameHecErrors = 0;
         gponGtcData->FramesLost = 0;
@@ -242,13 +233,8 @@ void GponMgrDml_SetDefaultPloam(DML_PLOAM* gponPloamData)
         gponPloamData->TxMessageCount = 0;
         gponPloamData->RxMessageCount = 0;
         gponPloamData->MicErrors = 0;
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-        gponPloamData->TO1Timer = 0;
-        gponPloamData->TO2Timer = 0;
-#else
         gponPloamData->RegistrationTimers.TO1 = 0;
         gponPloamData->RegistrationTimers.TO2 = 0;
-#endif
         gponPloamData->LastFetchedTime = 0;
     }    
 }
@@ -257,13 +243,8 @@ void GponMgrDml_SetDefaultOmci(DML_OMCI* gponOmciData)
 {
     if(gponOmciData != NULL)
     {
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-        gponOmciData->BaselineMessageCount = 0;
-        gponOmciData->ExtendedMessageCount = 0;
-#else
         gponOmciData->RxBaseLineMessageCountValid = 0;
         gponOmciData->RxExtendedMessageCountValid = 0;
-#endif
         gponOmciData->MicErrors = 0;
         gponOmciData->LastFetchedTime = 0;
     }    
@@ -312,11 +293,7 @@ void GponMgrDml_SetDefaultVeip(DML_VEIP_CTRL_T* gponVeipData)
         DML_VEIP* gponVeip = &(gponVeipData->dml);
         
         gponVeip->uInstanceNumber = 0;
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-        gponVeip->ManagedEntityId = 0;
-#else
         gponVeip->MeId = 0;
-#endif
         gponVeip->AdministrativeState = Lock;
         gponVeip->OperationalState = veip_Unknown;
         memset(gponVeip->InterDomainName, 0, 25);

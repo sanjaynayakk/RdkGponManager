@@ -185,11 +185,7 @@
                                     </functions>
                                     <parameters>
                                         <parameter>
-<?ifdef WAN_MANAGER_UNIFICATION_ENABLED?>
-                                            <name>CurrentVoltage</name>
-<?else?>
                                             <name>VoltageLevel</name>
-<?endif?>
                                             <type>int</type>
                                             <syntax>int</syntax>
                                         </parameter>
@@ -346,20 +342,12 @@
                                 <syntax>uint32</syntax>
                             </parameter>
                             <parameter>
-<?ifdef WAN_MANAGER_UNIFICATION_ENABLED?>
-                                <name>GtcTotalFecCodeWords</name>
-<?else?>
                                 <name>TotalFecCodeWords</name>
-<?endif?>
                                 <type>unsignedInt</type>
                                 <syntax>uint32</syntax>
                             </parameter>
                             <parameter>
-<?ifdef WAN_MANAGER_UNIFICATION_ENABLED?>
-                                <name>GtcHecErrorCount</name>
-<?else?>
                                 <name>HecErrorCount</name>
-<?endif?>
                                 <type>unsignedInt</type>
                                 <syntax>uint32</syntax>
                             </parameter>
@@ -428,20 +416,7 @@
                                 <type>unsignedInt</type>
                                 <syntax>uint32</syntax>
                             </parameter>
-<?ifdef WAN_MANAGER_UNIFICATION_ENABLED?>
-                            <parameter>
-                                <name>TO1Timer</name>
-                                <type>unsignedInt</type>
-                                <syntax>uint32</syntax>
-                            </parameter>
-                            <parameter>
-                                <name>TO2Timer</name>
-                                <type>unsignedInt</type>
-                                <syntax>uint32</syntax>
-                            </parameter>
-<?endif?>
                         </parameters>
-<?ifndef WAN_MANAGER_UNIFICATION_ENABLED?>
                         <objects>
                             <object>
                                 <name>RegistrationTimers</name>
@@ -463,7 +438,6 @@
                                 </parameters>
                             </object>
                         </objects>
-<?endif?>
                     </object>
                     <object>
                         <name>Gem</name>
@@ -647,20 +621,12 @@
                         </functions>
                         <parameters>
                             <parameter>
-<?ifdef WAN_MANAGER_UNIFICATION_ENABLED?>
-                                <name>BaselineMessageCount</name>
-<?else?>
                                 <name>RxBaseLineMessageCountValid</name>
-<?endif?>
                                 <type>int</type>
                                 <syntax>int</syntax>
                             </parameter>
                             <parameter>
-<?ifdef WAN_MANAGER_UNIFICATION_ENABLED?>
-                                <name>ExtendedMessageCount</name>
-<?else?>
                                 <name>RxExtendedMessageCountValid</name>
-<?endif?>
                                 <type>int</type>
                                 <syntax>int</syntax>
                             </parameter>
@@ -688,11 +654,7 @@
                         </functions>
                         <parameters>
                             <parameter>
-<?ifdef WAN_MANAGER_UNIFICATION_ENABLED?>
-                                <name>ManagedEntityId</name>
-<?else?>
                                 <name>MeId</name>
-<?endif?>
                                 <type>unsignedInt</type>
                                 <syntax>uint32</syntax>
                             </parameter>
