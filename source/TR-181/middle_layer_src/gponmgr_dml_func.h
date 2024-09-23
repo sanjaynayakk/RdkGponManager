@@ -138,9 +138,7 @@ BOOL GponPloam_GetParamUlongValue(ANSC_HANDLE hInsContext,char* ParamName,ULONG*
 
 ULONG GponPloam_GetParamStringValue(ANSC_HANDLE hInsContext,char* ParamName,char*   pValue,ULONG*  pUlSize);
 
-#if !defined(WAN_MANAGER_UNIFICATION_ENABLED)
 BOOL GponPloamRegTmr_GetParamUlongValue(ANSC_HANDLE hInsContext,char* ParamName,ULONG* puLong);
-#endif
 
 BOOL GponGem_IsUpdated(ANSC_HANDLE hInsContext);
 

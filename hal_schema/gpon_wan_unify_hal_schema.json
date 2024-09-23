@@ -212,7 +212,7 @@
           { "$ref": "#/definitions/ontPhysicalMediaTxPowerSignalLevelLowerThreshold" },
           { "$ref": "#/definitions/ontPhysicalMediaTxPowerSignalLevelUpperThreshold" },
           { "$ref": "#/definitions/ontPhysicalMediaVoltageObj" },
-          { "$ref": "#/definitions/ontPhysicalMediaCurrentVoltage" },
+          { "$ref": "#/definitions/ontPhysicalMediaVoltageLevel" },
           { "$ref": "#/definitions/ontPhysicalMediaBiasObj" },
           { "$ref": "#/definitions/ontPhysicalMediaCurrentBias" },
           { "$ref": "#/definitions/ontPhysicalMediaTemperatureObj" },
@@ -237,7 +237,7 @@
           { "$ref": "#/definitions/ontGtcCorrectedFecCodeWords" },
           { "$ref": "#/definitions/ontGtcUnCorrectedFecCodeWords" },
           { "$ref": "#/definitions/ontGtcGtcTotalFecCodeWords" },
-          { "$ref": "#/definitions/ontGtcGtcHecErrorCount" },
+          { "$ref": "#/definitions/ontGtcHecErrorCount" },
           { "$ref": "#/definitions/ontGtcPSBdHecErrors" },
           { "$ref": "#/definitions/ontGtcFrameHecErrors" },
           { "$ref": "#/definitions/ontGtcFramesLost" },
@@ -250,20 +250,21 @@
           { "$ref": "#/definitions/ontPloamTxMessageCount" },
           { "$ref": "#/definitions/ontPloamRxMessageCount" },
           { "$ref": "#/definitions/ontPloamMicErrors" },
-          { "$ref": "#/definitions/ontPloamTO1Timer" },
-          { "$ref": "#/definitions/ontPloamTO2Timer" },
+          { "$ref": "#/definitions/ontPloamRegistrationTimersObj" },
+          { "$ref": "#/definitions/ontPloamRegistrationTimersTO1" },
+          { "$ref": "#/definitions/ontPloamRegistrationTimersTO2" },
           { "$ref": "#/definitions/ontGemObj" },
           { "$ref": "#/definitions/ontGemPortId" },
           { "$ref": "#/definitions/ontGemTrafficType" },
           { "$ref": "#/definitions/ontGemTransmittedFrames" },
           { "$ref": "#/definitions/ontGemReceivedFrames" },
           { "$ref": "#/definitions/ontOmciObj" },
-          { "$ref": "#/definitions/ontOmciBaselineMessageCount" },
-          { "$ref": "#/definitions/ontOmciExtendedMessageCount" },
+          { "$ref": "#/definitions/ontOmciRxBaseLineMessageCountValid" },
+          { "$ref": "#/definitions/ontOmciRxExtendedMessageCountValid" },
           { "$ref": "#/definitions/ontOmciMicErrors" },
           { "$ref": "#/definitions/ontVeipObj" },
           { "$ref": "#/definitions/ontVeipInterfaceName" },
-          { "$ref": "#/definitions/ontVeipManagedEntityId" },
+          { "$ref": "#/definitions/ontVeipMeId" },
           { "$ref": "#/definitions/ontVeipAdministrativeState" },
           { "$ref": "#/definitions/ontVeipOperationalState" },
           { "$ref": "#/definitions/ontVeipInterDomainName" },
@@ -890,14 +891,14 @@
       }
     },
 
-    "ontPhysicalMediaCurrentVoltage": {
+    "ontPhysicalMediaVoltageLevel": {
       "description": "The voltage measured the optical module (Access = Read-Only)",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string",
-          "pattern": "^Device\\.X_RDK_ONT\\.PhysicalMedia\\.\\d+\\.Voltage\\.CurrentVoltage$"
+          "pattern": "^Device\\.X_RDK_ONT\\.PhysicalMedia\\.\\d+\\.Voltage\\.VoltageLevel$"
         },
         "type": {
           "type": "string",
@@ -1321,7 +1322,7 @@
       "properties": {
         "name": {
           "type": "string",
-          "const": "Device.X_RDK_ONT.Gtc.GtcTotalFecCodeWords"
+          "const": "Device.X_RDK_ONT.Gtc.TotalFecCodeWords"
         },
         "type": {
           "type": "string",
@@ -1334,14 +1335,14 @@
       }
     },
 
-    "ontGtcGtcHecErrorCount": {
+    "ontGtcHecErrorCount": {
       "description": "The number of FEC words included into a physical burst payload. (Reference: 'FS HEC error count' defined in Table C.14.1 of ITU-T G.9807) (Access = Read-Only)",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string",
-          "const": "Device.X_RDK_ONT.Gtc.GtcHecErrorCount"
+          "const": "Device.X_RDK_ONT.Gtc.HecErrorCount"
         },
         "type": {
           "type": "string",
@@ -1587,14 +1588,24 @@
       }
     },
 
-    "ontPloamTO1Timer": {
+    "ontPloamRegistrationTimersObj": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+           "const": "Device.X_RDK_ONT.Ploam.RegistrationTimers."
+        }
+      }
+    },
+
+    "ontPloamRegistrationTimersTO1": {
       "description": "Ranging timer (Access = Read-Only)",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string",
-          "const": "Device.X_RDK_ONT.Ploam.TO1Timer"
+          "const": "Device.X_RDK_ONT.Ploam.RegistrationTimers.TO1"
         },
         "type": {
           "type": "string",
@@ -1607,14 +1618,14 @@
       }
     },
 
-    "ontPloamTO2Timer": {
+    "ontPloamRegistrationTimersTO2": {
       "description": "Loss of downstream synchronization (Access = Read-Only)",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string",
-          "const": "Device.X_RDK_ONT.Ploam.TO2Timer"
+          "const": "Device.X_RDK_ONT.Ploam.RegistrationTimers.TO2"
         },
         "type": {
           "type": "string",
@@ -2077,14 +2088,14 @@
       }
     },
 
-    "ontOmciBaselineMessageCount": {
+    "ontOmciRxBaseLineMessageCountValid": {
       "description": "Count of OMCI messages (Access = Read-Only)",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string",
-          "const": "Device.X_RDK_ONT.Omci.BaselineMessageCount"
+          "const": "Device.X_RDK_ONT.Omci.RxBaseLineMessageCountValid"
         },
         "type": {
           "type": "string",
@@ -2097,14 +2108,14 @@
       }
     },
 
-    "ontOmciExtendedMessageCount": {
+    "ontOmciRxExtendedMessageCountValid": {
       "description": "Count of OMCI messages (Access = Read-Only)",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string",
-          "const": "Device.X_RDK_ONT.Omci.ExtendedMessageCount"
+          "const": "Device.X_RDK_ONT.Omci.RxExtendedMessageCountValid"
         },
         "type": {
           "type": "string",
@@ -2167,14 +2178,14 @@
       }
     },
 
-    "ontVeipManagedEntityId": {
+    "ontVeipMeId": {
       "description": "Identifier of the VEIP ME (Access = Read-Only)",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string",
-          "pattern": "^Device\\.X_RDK_ONT\\.Veip\\.\\d+\\.ManagedEntityId$"
+          "pattern": "^Device\\.X_RDK_ONT\\.Veip\\.\\d+\\.MeId$"
         },
         "type": {
           "type": "string",

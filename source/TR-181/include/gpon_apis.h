@@ -57,11 +57,7 @@ DML_POWER, *PDML_POWER;
 typedef struct
 _DML_VOLT
 {
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    INT     CurrentVoltage;
-#else
     INT     VoltageLevel;
-#endif
 }
 DML_VOLT, *PDML_VOLT;
 
@@ -112,13 +108,8 @@ _DML_GTC
     ULONG         CorrectedFecBytes;
     ULONG         CorrectedFecCodeWords;
     ULONG         UnCorrectedFecCodeWords;
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    ULONG         GtcTotalFecCodeWords;
-    ULONG         GtcHecErrorCount;
-#else
     ULONG         TotalFecCodeWords;
     ULONG         HecErrorCount;
-#endif
     ULONG         PSBdHecErrors;
     ULONG         FrameHecErrors;
     ULONG         FramesLost;
@@ -253,7 +244,6 @@ _REG_STATE_ENUM
         O9
 } REG_STATE_ENUM;
 
-#if !defined(WAN_MANAGER_UNIFICATION_ENABLED)
 typedef struct
 _DML_REG_TIMER
 {
@@ -261,7 +251,6 @@ _DML_REG_TIMER
     ULONG         TO2;
 }
 DML_REG_TIMER, *PDML_REG_TIMER;
-#endif
 
 typedef struct
 _DML_PLOAM
@@ -274,27 +263,16 @@ _DML_PLOAM
     ULONG               TxMessageCount;
     ULONG               RxMessageCount;
     ULONG               MicErrors;
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    ULONG         	TO1Timer;
-    ULONG         	TO2Timer;
-#endif
     ULONG               LastFetchedTime;
-#if !defined(WAN_MANAGER_UNIFICATION_ENABLED)
     DML_REG_TIMER       RegistrationTimers;
-#endif
 }
 DML_PLOAM, *PDML_PLOAM;
 
 typedef struct
 _DML_OMCI
 {
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    UINT        BaselineMessageCount;
-    UINT        ExtendedMessageCount;
-#else
     UINT        RxBaseLineMessageCountValid;
     UINT        RxExtendedMessageCountValid;
-#endif
     ULONG       MicErrors;
     ULONG       LastFetchedTime;
 }
@@ -384,11 +362,7 @@ typedef struct
 _DML_VEIP
 {
     ULONG              uInstanceNumber;
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    ULONG              ManagedEntityId;
-#else
     ULONG              MeId;
-#endif
     DML_LOCK_ENUM      AdministrativeState;
     DML_OPERSTATE_ENUM OperationalState;
     CHAR               InterDomainName[25];
