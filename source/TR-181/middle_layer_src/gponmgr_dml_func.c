@@ -665,19 +665,11 @@ BOOL GponPhyVoltage_GetParamIntValue(ANSC_HANDLE hInsContext,char* ParamName,int
         {
             DML_PHY_MEDIA* pGponPhy = &(pGponCtrl->dml);
 
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-            if (strcmp(ParamName, "CurrentVoltage") == 0)
-            {
-                *pInt = (int) pGponPhy->Voltage.CurrentVoltage;
-                ret = TRUE;
-            }
-#else
             if (strcmp(ParamName, "VoltageLevel") == 0)
             {
                 *pInt = (int) pGponPhy->Voltage.VoltageLevel;
                 ret = TRUE;
             }
-#endif
             
             GponMgrDml_GetData_release(pGponDmlData);
         }
@@ -881,18 +873,6 @@ BOOL GponGtc_GetParamUlongValue(ANSC_HANDLE hInsContext,char* ParamName,ULONG* p
                 *puLong= pGponGtc->UnCorrectedFecCodeWords;
                 ret = TRUE;
             }
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-            else if (strcmp(ParamName, "GtcTotalFecCodeWords") == 0)
-            {
-                *puLong= pGponGtc->GtcTotalFecCodeWords;
-                ret = TRUE;
-            }
-            else if (strcmp(ParamName, "GtcHecErrorCount") == 0)
-            {
-                *puLong= pGponGtc->GtcHecErrorCount;
-                ret = TRUE;
-            }
-#else
             else if (strcmp(ParamName, "TotalFecCodeWords") == 0)
             {
                 *puLong= pGponGtc->TotalFecCodeWords;
@@ -903,7 +883,6 @@ BOOL GponGtc_GetParamUlongValue(ANSC_HANDLE hInsContext,char* ParamName,ULONG* p
                 *puLong= pGponGtc->HecErrorCount;
                 ret = TRUE;
             }
-#endif
             else if (strcmp(ParamName, "PSBdHecErrors") == 0)
             {
                 *puLong= pGponGtc->PSBdHecErrors;
@@ -969,18 +948,6 @@ BOOL GponPloam_GetParamUlongValue(ANSC_HANDLE hInsContext,char* ParamName,ULONG*
                 *puLong= pGponPloam->MicErrors;
                 ret = TRUE;
             }
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-            else if (strcmp(ParamName, "TO1Timer") == 0)
-            {
-                *puLong= pGponPloam->TO1Timer;
-                ret = TRUE;
-            }
-            else if (strcmp(ParamName, "TO2Timer") == 0)
-            {
-                *puLong= pGponPloam->TO2Timer;
-                ret = TRUE;
-            }
-#endif
         }
 
         GponMgrDml_GetData_release(pGponDmlData);
@@ -1018,7 +985,6 @@ ULONG GponPloam_GetParamStringValue(ANSC_HANDLE hInsContext,char* ParamName,char
     return ret;
 }
 
-#if !defined(WAN_MANAGER_UNIFICATION_ENABLED)
 BOOL GponPloamRegTmr_GetParamUlongValue(ANSC_HANDLE hInsContext,char* ParamName,ULONG* puLong)
 {
     BOOL ret = FALSE;
@@ -1044,7 +1010,6 @@ BOOL GponPloamRegTmr_GetParamUlongValue(ANSC_HANDLE hInsContext,char* ParamName,
 
     return ret;
 }
-#endif
 
 BOOL GponGem_IsUpdated(ANSC_HANDLE hInsContext)
 {
@@ -1365,18 +1330,6 @@ BOOL GponOmci_GetParamIntValue(ANSC_HANDLE hInsContext,char* ParamName,int* pInt
         DML_OMCI* pGponOmci = &(pGponDmlData->gpon.Omci);
         if ( GponHal_get_omci(pGponOmci) == ANSC_STATUS_SUCCESS)
         {
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-            if (strcmp(ParamName, "BaselineMessageCount") == 0)
-            {
-                *pInt = (int) pGponOmci->BaselineMessageCount;
-                ret = TRUE;
-            }
-            else if (strcmp(ParamName, "ExtendedMessageCount") == 0)
-            {
-                *pInt = (int) pGponOmci->ExtendedMessageCount;
-                ret = TRUE;
-            }
-#else
             if (strcmp(ParamName, "RxBaseLineMessageCountValid") == 0)
             {
                 *pInt = (int) pGponOmci->RxBaseLineMessageCountValid;
@@ -1387,7 +1340,6 @@ BOOL GponOmci_GetParamIntValue(ANSC_HANDLE hInsContext,char* ParamName,int* pInt
                 *pInt = (int) pGponOmci->RxExtendedMessageCountValid;
                 ret = TRUE;
             }
-#endif
         }
 
         GponMgrDml_GetData_release(pGponDmlData);
@@ -1542,19 +1494,11 @@ BOOL GponVeip_GetParamUlongValue(ANSC_HANDLE hInsContext, char* ParamName, ULONG
         {
             DML_VEIP* pGponVeip = &(pGponCtrl->dml);
 
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-            if (strcmp(ParamName, "ManagedEntityId") == 0)
-            {
-                *puLong = pGponVeip->ManagedEntityId;
-                ret = TRUE;
-            }
-#else
             if (strcmp(ParamName, "MeId") == 0)
             {
                 *puLong = pGponVeip->MeId;
                 ret = TRUE;
             }
-#endif
             else if (strcmp(ParamName, "AdministrativeState") == 0)
             {
                 *puLong = pGponVeip->AdministrativeState;
