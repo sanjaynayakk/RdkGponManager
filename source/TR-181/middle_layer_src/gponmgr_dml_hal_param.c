@@ -384,21 +384,10 @@ ANSC_STATUS Map_hal_dml_pm(DML_PHY_MEDIA_LIST_T* gponPhyList, char* ParamName, c
     }
 
     /* Voltage */
-    else if( strstr(ParamName, "Voltage"))
+    else if( strstr(ParamName, "VoltageLevel"))
     {
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-        if( strstr(ParamName, "CurrentVoltage"))
-        {
-            pPhyMedia->Voltage.CurrentVoltage = strtol(pValue,&err,10);
-            retStatus = ANSC_STATUS_SUCCESS;
-        }
-#else
-        if( strstr(ParamName, "VoltageLevel"))
-        {
-            pPhyMedia->Voltage.VoltageLevel  = strtol(pValue,&err,10);
-            retStatus = ANSC_STATUS_SUCCESS;
-        }
-#endif
+        pPhyMedia->Voltage.VoltageLevel  = strtol(pValue,&err,10);
+        retStatus = ANSC_STATUS_SUCCESS;
     }
 
     /* Bias */
@@ -473,18 +462,6 @@ ANSC_STATUS Map_hal_dml_gtc(DML_GTC* gponGtc,char* ParamName, char* pValue)
         gponGtc->CorrectedFecCodeWords = strtoul(pValue,&err,10);
         retStatus = ANSC_STATUS_SUCCESS;
     }
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    else if( strstr(ParamName, "GtcTotalFecCodeWords"))
-    {
-        gponGtc->GtcTotalFecCodeWords = strtoul(pValue,&err,10);
-        retStatus = ANSC_STATUS_SUCCESS;
-    }
-    else if( strstr(ParamName, "GtcHecErrorCount"))
-    {
-        gponGtc->GtcHecErrorCount = strtoul(pValue,&err,10);
-        retStatus = ANSC_STATUS_SUCCESS;
-    }
-#else
     else if( strstr(ParamName, "TotalFecCodeWords"))
     {
         gponGtc->TotalFecCodeWords = strtoul(pValue,&err,10);
@@ -495,7 +472,6 @@ ANSC_STATUS Map_hal_dml_gtc(DML_GTC* gponGtc,char* ParamName, char* pValue)
         gponGtc->HecErrorCount = strtoul(pValue,&err,10);
         retStatus = ANSC_STATUS_SUCCESS;
     }
-#endif
     else if( strstr(ParamName, "PSBdHecErrors"))
     {
         gponGtc->PSBdHecErrors = strtoul(pValue,&err,10);
@@ -560,18 +536,6 @@ ANSC_STATUS Map_hal_dml_ploam(DML_PLOAM* gponPloam, char* ParamName, char* pValu
         gponPloam->MicErrors = strtoul(pValue,&err,10);
         retStatus = ANSC_STATUS_SUCCESS;
     }    
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    else if( strstr(ParamName, "TO1Timer"))
-    {
-        gponPloam->TO1Timer = strtoul(pValue,&err,10);
-        retStatus = ANSC_STATUS_SUCCESS;
-    }    
-    else if( strstr(ParamName, "TO2Timer"))
-    {
-        gponPloam->TO2Timer = strtoul(pValue,&err,10);
-        retStatus = ANSC_STATUS_SUCCESS;
-    }    
-#endif
     else if( strstr(ParamName, "RegistrationState"))
     {
         //O1(0),O2(1),O3(2),O4(3),O5(4),O6(5),O7(6),O8(7),O9(8)
@@ -621,7 +585,6 @@ ANSC_STATUS Map_hal_dml_ploam(DML_PLOAM* gponPloam, char* ParamName, char* pValu
             retStatus = ANSC_STATUS_SUCCESS;
         }
     }
-#if !defined(WAN_MANAGER_UNIFICATION_ENABLED)
     else if( strstr(ParamName, "RegistrationTimers"))
     {
         if( strstr(ParamName, "TO1"))
@@ -635,7 +598,6 @@ ANSC_STATUS Map_hal_dml_ploam(DML_PLOAM* gponPloam, char* ParamName, char* pValu
             retStatus = ANSC_STATUS_SUCCESS;
         }
     }
-#endif
     
     if(retStatus == ANSC_STATUS_FAILURE)
     {
@@ -650,18 +612,6 @@ ANSC_STATUS Map_hal_dml_omci(DML_OMCI* gponOmci, char* ParamName, char* pValue)
     ANSC_STATUS retStatus = ANSC_STATUS_FAILURE;
     char *err;
     
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    if( strstr(ParamName, "BaselineMessageCount"))
-    {
-        gponOmci->BaselineMessageCount = strtoul(pValue,&err,10);
-        retStatus = ANSC_STATUS_SUCCESS;
-    }
-    else if( strstr(ParamName, "ExtendedMessageCount"))
-    {
-        gponOmci->ExtendedMessageCount = strtoul(pValue,&err,10);
-        retStatus = ANSC_STATUS_SUCCESS;
-    }
-#else
     if( strstr(ParamName, "RxBaseLineMessageCountValid"))
     {
         gponOmci->RxBaseLineMessageCountValid = strtoul(pValue,&err,10);
@@ -672,7 +622,6 @@ ANSC_STATUS Map_hal_dml_omci(DML_OMCI* gponOmci, char* ParamName, char* pValue)
         gponOmci->RxExtendedMessageCountValid = strtoul(pValue,&err,10);
         retStatus = ANSC_STATUS_SUCCESS;
     }
-#endif
     else if( strstr(ParamName, "MicErrors"))
     {
         gponOmci->MicErrors = strtoul(pValue,&err,10);
@@ -954,19 +903,6 @@ ANSC_STATUS Map_hal_dml_veip(DML_VEIP_LIST_T* gponVeipList, char* ParamName, cha
     
     pVeip->uInstanceNumber = hal_index;
     
-#if defined(WAN_MANAGER_UNIFICATION_ENABLED)
-    if (strstr(ParamName, "ManagedEntityId"))
-    {
-        pVeip->ManagedEntityId = strtoul(pValue,&err,10);
-        retStatus = ANSC_STATUS_SUCCESS;
-    }
-    else if (strstr(ParamName, "AdministrativeState"))
-    {
-        //TODO  : Need to revist based on the outcome of CS00012203760
-	pVeip->AdministrativeState = Unlock;
-        retStatus = ANSC_STATUS_SUCCESS;
-    }
-#else
     if (strstr(ParamName, "MeId"))
     {
         pVeip->MeId = strtoul(pValue,&err,10);
@@ -977,8 +913,6 @@ ANSC_STATUS Map_hal_dml_veip(DML_VEIP_LIST_T* gponVeipList, char* ParamName, cha
         pVeip->AdministrativeState = strstr(pValue,"Lock")?Lock:Unlock;
         retStatus = ANSC_STATUS_SUCCESS;
     }
-
-#endif
     else if (strstr(ParamName, "OperationalState"))
     {
         //Up(0),Down(1),Unknown(2),Dormant(3),NotPresent(4),LowerLayerDown(5),Error(6)

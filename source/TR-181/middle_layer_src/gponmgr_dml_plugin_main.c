@@ -357,9 +357,7 @@ int ANSC_EXPORT_API GponMgrDml_Init(ULONG uMaxVersionSupported, void* hCosaPlugI
 
     pPlugInfo->RegisterFunction(pPlugInfo->hContext, "GponPloam_GetParamUlongValue", GponPloam_GetParamUlongValue);
     pPlugInfo->RegisterFunction(pPlugInfo->hContext, "GponPloam_GetParamStringValue", GponPloam_GetParamStringValue);
-#if !defined(WAN_MANAGER_UNIFICATION_ENABLED)
     pPlugInfo->RegisterFunction(pPlugInfo->hContext, "GponPloamRegTmr_GetParamUlongValue", GponPloamRegTmr_GetParamUlongValue);
-#endif
 
     pPlugInfo->RegisterFunction(pPlugInfo->hContext, "GponGem_Synchronize", GponGem_Synchronize);
     pPlugInfo->RegisterFunction(pPlugInfo->hContext, "GponGem_IsUpdated", GponGem_IsUpdated);
